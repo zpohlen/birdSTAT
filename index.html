@@ -11,6 +11,19 @@
         height: 100%;
       }
     </style>
+    <script>
+      ga('create', 'UA-XXXXX-Y', 'auto');
+      ga(function(tracker) {
+        // Gets the client ID of the default tracker.
+        var clientId = tracker.get('clientId');
+
+        // Gets a reference to the window object of the destionation iframe.
+        var frameWindow = document.getElementById('destination-frame').contentWindow;
+
+        // Sends the client ID to the window inside the destination frame.
+        frameWindow.postMessage(clientId, 'https://zakpohlen.shinyapps.io/birdSTAT');
+      });
+    </script>
     <title>birdSTAT</title>
     <meta property="og:title" content="birdSTAT" />
     <meta name="description" content="A tool to summarise and visualize your personal eBird data." />
@@ -18,6 +31,6 @@
   </head>
 
   <body>
-    <iframe class="iframe" src="https://zakpohlen.shinyapps.io/birdSTAT"></iframe>
+    <iframe id="destination-frame" class="iframe" src="https://zakpohlen.shinyapps.io/birdSTAT" />
   </body>
 </html>
